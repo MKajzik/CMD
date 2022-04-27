@@ -12,10 +12,10 @@ import (
 	"github.com/bengadbois/flippytext"
 )
 
-func First(done chan bool) {
+func Third(done chan bool) {
 	text := flippytext.New()
 	text.TickerTime = time.Millisecond * 2
-	text.Write("Pierwsze zadanie.\nWyświetl tekst \"hello world\" używając tylko jednej komendy.")
+	text.Write("Trzecie zadanie.\nUtwórz katalog \"tmp/files/secret\". \nPamiętaj, że foldery tmp i files nie istnieją i musisz je osobno stworzyć. \nPodpowiedź: Da się to zrobić jedną komendą")
 
 	for {
 		fmt.Print("$ ")
@@ -29,8 +29,8 @@ func First(done chan bool) {
 		}
 		text.Write(fmt.Sprintf("Output: %s", out))
 
-		if strings.TrimSuffix(string(out), "\n") == "hello world" {
-			text.Write("Brawo udało Ci się ukończyć pierwsze zadanie.")
+		if strings.TrimSuffix(input, "\n") == "pwd" {
+			text.Write("Brawo udało Ci się ukończyć drugie zadanie.")
 			break
 		}
 

@@ -25,6 +25,8 @@ func main() {
 	<-done
 	clearTerminal()
 	text.Write("Rozgrzewka skończona czas przejść do bardziej ciekawych wyzwań!")
+	go tasks.Third(done)
+	<-done
 }
 
 func clearTerminal() {
