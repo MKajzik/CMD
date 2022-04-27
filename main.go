@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	clearTerminal()
 	text := flippytext.New()
 	text.TickerTime = time.Millisecond * 2
 	text.Write("Witaj w naszym wyzwaniu CMD! \nZa chwilę dostaniesz 10 zadań do wykonania aby zaliczyć nasze wyzwanie.")
@@ -26,6 +27,9 @@ func main() {
 	clearTerminal()
 	text.Write("Rozgrzewka skończona czas przejść do bardziej ciekawych wyzwań!")
 	go tasks.Third(done)
+	<-done
+	clearTerminal()
+	go tasks.Fourth(done)
 	<-done
 }
 

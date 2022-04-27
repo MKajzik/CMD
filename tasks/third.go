@@ -19,13 +19,13 @@ func Third(done chan bool) {
 		text.Write("Naciśnij ENTER kiedy wykonasz zadanie")
 		fmt.Scanln()
 
-		out, err := exec.Command("sh", "-c", "[ -d \"./path/dir/\" ] && echo \"Directory /path/dir/ exists.\"").Output()
+		out, err := exec.Command("sh", "-c", "[ -d \"./tmp/files/secret/\" ] && echo \"Directory /tmp/files/secret/ exists.\"").Output()
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		if strings.TrimSuffix(string(out), "\n") == "Directory /path/dir/ exists." {
-			text.Write("Brawo udało Ci się ukończyć drugie zadanie.")
+		if strings.TrimSuffix(string(out), "\n") == "Directory /tmp/files/secret/ exists." {
+			text.Write("Brawo udało Ci się ukończyć trzecie zadanie.")
 			break
 		}
 
