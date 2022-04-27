@@ -15,8 +15,8 @@ import (
 func Third(done chan bool) {
 	text := flippytext.New()
 	text.TickerTime = time.Millisecond * 2
-	text.Write("Trzecie zadanie.\nUtwórz katalog \"tmp/files/secret\". \nPamiętaj, że foldery tmp i files nie istnieją i musisz je osobno stworzyć. \nPodpowiedź: Da się to zrobić jedną komendą")
-
+	text.Write("Trzecie zadanie.\nUtwórz katalog \"tmp/files/secret\". \nPamiętaj, że foldery tmp i files nie istnieją i musisz je osobno stworzyć.")
+	text.Write("Podpowiedź: Da się to zrobić jedną komendą")
 	for {
 		fmt.Print("$ ")
 		scanner := bufio.NewScanner(os.Stdin)
