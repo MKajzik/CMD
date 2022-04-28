@@ -37,6 +37,9 @@ func main() {
 	clearTerminal()
 	go tasks.Sixth(done)
 	<-done
+	clearTerminal()
+	go tasks.Seventh(done)
+	<-done
 }
 
 func clearTerminal() {
