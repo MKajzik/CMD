@@ -5,28 +5,32 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"strings"
 	"time"
+	"warsztaty/aplikacja/shared"
 
 	"github.com/bengadbois/flippytext"
 )
 
-func Fifth(done chan bool) {
+func Sixth(done chan bool) {
 	text := flippytext.New()
 	text.TickerTime = time.Millisecond * 2
-	text.Write("Piąte zadanie.\nW katalogu istnieje plik access.log. Policz linie w pliku które posiadają słowo \"GET\"")
+	text.Write("Piąte zadanie.\nW katalogu istnieje plik users.log. Usuń z każdej nazwy użytkownika znak \"_\"")
 	text.Write("Zapisz wynik w pliku result.txt")
+	err := os.WriteFile("users.log", []byte(shared.Six), 0755)
+	if err != nil {
+		fmt.Printf("Unable to write file: %v", err)
+	}
 	for {
 		text.Write("Naciśnij ENTER kiedy wykonasz zadanie")
 		fmt.Scanln()
 
-		out, err := exec.Command("sh", "-c", "cat result.txt | tr -d \" \t\n\r\"").Output()
+		out, err := exec.Command("sh", "-c", "cat result.txt").Output()
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		if strings.TrimSuffix(string(out), "\n") == "8" {
-			text.Write("Brawo udało Ci się ukończyć trzecie zadanie.")
+		if string(out) == shared.Six_solution {
+			text.Write("Brawo udało Ci się ukończyć szóste zadanie.")
 			err := os.Remove("result.txt")
 			if err != nil {
 				log.Fatal(err)
