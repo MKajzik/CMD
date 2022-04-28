@@ -15,6 +15,14 @@ func Third(done chan bool) {
 	text.TickerTime = time.Millisecond * 2
 	text.Write("Trzecie zadanie.\nUtwórz katalog \"tmp/files/secret\". \nPamiętaj, że foldery tmp i files nie istnieją i musisz je osobno stworzyć.")
 	text.Write("Podpowiedź: Da się to zrobić jedną komendą")
+
+	out, err := exec.Command("sh", "-c", "pwd").Output()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	text.Write(fmt.Sprintf("To zadanie wykonaj samodzielnie w oddzielnym terminalu zaczynając od komendy: cd %s", out))
+
 	for {
 		text.Write("Naciśnij ENTER kiedy wykonasz zadanie")
 		fmt.Scanln()

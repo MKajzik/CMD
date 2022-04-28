@@ -17,6 +17,14 @@ func Seventh(done chan bool) {
 	text.Write("Siódme zadanie.\nW katalogu \"siedem/\" zostały dodane pliki. Usuń wszystkie pliki oraz wszystkie podkatalogi.")
 	text.Write("Uwaga: istnieją pliki ukryte z \".\" . rm -rf * tutaj nie zadziała")
 	createDir()
+
+	out, err := exec.Command("sh", "-c", "pwd").Output()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	text.Write(fmt.Sprintf("To zadanie wykonaj samodzielnie w oddzielnym terminalu zaczynając od komendy: cd %s", out))
+
 	for {
 		text.Write("Naciśnij ENTER kiedy wykonasz zadanie")
 		fmt.Scanln()
@@ -25,7 +33,7 @@ func Seventh(done chan bool) {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Printf("%s", string(out))
+
 		if strings.TrimSuffix(string(out), "\n") == "siedem is empty." {
 			text.Write("Brawo udało Ci się ukończyć siódme zadanie.")
 			err := os.RemoveAll("siedem/")

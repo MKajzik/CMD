@@ -16,7 +16,15 @@ func Sixth(done chan bool) {
 	text.TickerTime = time.Millisecond * 2
 	text.Write("Piąte zadanie.\nW katalogu istnieje plik users.log. Usuń z każdej nazwy użytkownika znak \"_\"")
 	text.Write("Zapisz wynik w pliku result.txt")
-	err := os.WriteFile("users.log", []byte(shared.Six), 0755)
+
+	out, err := exec.Command("sh", "-c", "pwd").Output()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	text.Write(fmt.Sprintf("To zadanie wykonaj samodzielnie w oddzielnym terminalu zaczynając od komendy: cd %s", out))
+
+	err = os.WriteFile("users.log", []byte(shared.Six), 0755)
 	if err != nil {
 		fmt.Printf("Unable to write file: %v", err)
 	}

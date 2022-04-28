@@ -14,7 +14,7 @@ func main() {
 	clearTerminal()
 	text := flippytext.New()
 	text.TickerTime = time.Millisecond * 2
-	text.Write("Witaj w naszym wyzwaniu CMD! \nZa chwilę dostaniesz 10 zadań do wykonania aby zaliczyć nasze wyzwanie.")
+	text.Write("Witaj w naszym wyzwaniu CMD! \nZa chwilę dostaniesz 8 zadań do wykonania aby zaliczyć nasze wyzwanie.")
 	text.Write("Naciśnij ENTER kiedy będziesz gotowy")
 	fmt.Scanln()
 	done := make(chan bool, 1)
@@ -40,6 +40,11 @@ func main() {
 	clearTerminal()
 	go tasks.Seventh(done)
 	<-done
+	clearTerminal()
+	go tasks.Eigth(done)
+	<-done
+	text.Write("GRATULACJE! Udało Ci się ukończyć nasze wyzwanie CMD.")
+	time.Sleep(5 * time.Second)
 }
 
 func clearTerminal() {

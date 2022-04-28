@@ -16,6 +16,13 @@ func Fifth(done chan bool) {
 	text.TickerTime = time.Millisecond * 2
 	text.Write("Piąte zadanie.\nW katalogu istnieje plik access.log. Policz linie w pliku które posiadają słowo \"GET\"")
 	text.Write("Zapisz wynik w pliku result.txt")
+
+	out, err := exec.Command("sh", "-c", "pwd").Output()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	text.Write(fmt.Sprintf("To zadanie wykonaj samodzielnie w oddzielnym terminalu zaczynając od komendy: cd %s", out))
 	for {
 		text.Write("Naciśnij ENTER kiedy wykonasz zadanie")
 		fmt.Scanln()
