@@ -8,6 +8,7 @@ import (
 	"warsztaty/aplikacja/tasks"
 
 	"github.com/bengadbois/flippytext"
+	"github.com/fatih/color"
 )
 
 func main() {
@@ -26,6 +27,7 @@ func main() {
 	<-done
 	clearTerminal()
 	text.Write("Rozgrzewka skończona czas przejść do bardziej ciekawych wyzwań!")
+	clearTerminal()
 	go tasks.Third(done)
 	<-done
 	clearTerminal()
@@ -43,7 +45,12 @@ func main() {
 	clearTerminal()
 	go tasks.Eigth(done)
 	<-done
-	text.Write("GRATULACJE! Udało Ci się ukończyć nasze wyzwanie CMD.")
+	clearTerminal()
+	go tasks.Nine(done)
+	<-done
+	clearTerminal()
+	color.Green("GRATULACJE!!!")
+	text.Write("Udało Ci się ukończyć nasze wyzwanie CMD.")
 	time.Sleep(5 * time.Second)
 }
 

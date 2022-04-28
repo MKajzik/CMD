@@ -14,7 +14,7 @@ import (
 func Sixth(done chan bool) {
 	text := flippytext.New()
 	text.TickerTime = time.Millisecond * 2
-	text.Write("Piąte zadanie.\nW katalogu istnieje plik users.log. Usuń z każdej nazwy użytkownika znak \"_\"")
+	text.Write("Szóste zadanie.\nW katalogu istnieje plik users.log. Usuń z każdej nazwy użytkownika znak \"_\"")
 	text.Write("Zapisz wynik w pliku result.txt")
 
 	out, err := exec.Command("sh", "-c", "pwd").Output()
